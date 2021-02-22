@@ -7,6 +7,10 @@ function Login() {
 
 const signIn =(e)=>{
 e.preventDefault();
+
+}
+const register = (e) =>{
+e.preventDefault();
 }
     return (
         <div className='login'>
@@ -23,7 +27,7 @@ e.preventDefault();
                 <input type="password"value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                 <button className='login_signInButton'>Sign-in</button>
             </form>
-            <button className='login_registerButton'>create your amazon account</button>
+            <button  className='login_registerButton' type='submit'>create your amazon account</button>
         </div>
         </div>
     )
