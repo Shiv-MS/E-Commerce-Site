@@ -41,7 +41,7 @@ const requiresAuth = passport.authenticate('jwt', { session: false });
 app.use('/api/auth', authRoutes);
 
 // For all authenticated routes, make sure to use this
-app.use('/api/users', /*requiresAuth,*/ usersRoutes);
+app.use('/api/users', requiresAuth, usersRoutes);
 
 app.use('/api/product',productRoutes);
 
