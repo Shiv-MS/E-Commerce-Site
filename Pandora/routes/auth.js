@@ -7,6 +7,7 @@ const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
 const User = require('../models/User');
+const Cart = require('../models/Cart');
 //this route is creating a new User, we will need our input to send,{
 // name:req.body.name, email:req.body.email, password: req.body.email}, we have to create a post 
 // post request from our react application
@@ -57,6 +58,7 @@ router.post('/login', (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       if (!isMatch)
         return res.status(401).json({ message: 'Invalid email or password' });
+
 
       const payload = {
         id: user.id,

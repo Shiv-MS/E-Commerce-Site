@@ -1,13 +1,22 @@
-import React ,{useContext}from "react";
+import React ,{useContext,useEffect,useState}from "react";
 import { Store } from '../../store';
 import "./Header.css";
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import {Link} from 'react-router-dom';
-
+import API from '../../utils/API';
+import {UPDATE_CART} from '../../store/actions/types';
 function Header() {
-  const {state}= useContext(Store)
+  const {state,dispatch}= useContext(Store)
   const user = state.auth.user;
+  useEffect(()=>{
+    API.get_cart()
+      .then((res) => {
+        console.log({ res });
+     dispatch({type:UPDATE_CART ,payload:res.data})
+      })
+      .catch((err) => console.log({ err }));
+  },[user])
   return (
     <div className="header">
       <Link to='/'>
@@ -35,7 +44,7 @@ function Header() {
           <span className="header_optionLineTwo">Prime</span>
         </div>
         <div className="header_optionBasket"><ShoppingBasketIcon/>
-        <span className="header_optionLineTwo header_basketCount">0</span></div>
+  <span className="header_optionLineTwo header_basketCount">{user.name ? state.auth.cart.length : ''}</span></div>
       </div>
     </div>
   );

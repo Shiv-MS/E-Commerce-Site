@@ -1,12 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Store } from "../../store";
-import { logoutUser } from "../../store/actions/authActions";
+import { logoutUser  } from "../../store/actions/authActions";
+import { UPDATE_CART} from "../../store/actions/types";
 import API from "../../utils/apiHelper";
 
 const ShopppingCart = (props) => {
   const { state, dispatch } = useContext(Store);
   const user = state.auth.user;
-  const [shoppingCart, setShoppingCart] = useState([]);
+ const shoppingCart = state.auth.cart;
+  // const [shoppingCart, setShoppingCart] = useState([]);
   useEffect(() => {
     if (!state.auth.isAuthenticated) props.history.push("/login");
 
@@ -15,13 +17,9 @@ const ShopppingCart = (props) => {
         console.log({ res });
       })
       .catch((err) => console.log({ err }));
-    //Getting Cart
-    API.get_cart()
-      .then((res) => {
-        console.log({ res });
-        setShoppingCart(res.data);
-      })
-      .catch((err) => console.log({ err }));
+    // Getting Cart
+
+  
   }, [state, props]);
 
   const onLogoutClick = (e) => {
@@ -29,6 +27,10 @@ const ShopppingCart = (props) => {
 
     logoutUser(props.history)(dispatch);
   };
+  const deleteItem =(id)=>{
+
+
+  }
   return (
     <div>
 
@@ -36,7 +38,7 @@ const ShopppingCart = (props) => {
          {shoppingCart.length < 1 ? (
            <p>Add items</p>
         ) : (
-          shoppingCart.map((item,i) => <li key={(item._id)+i}>{item.product_name}</li>)
+          shoppingCart.map((item,i) => <li key={item._id+i}>{item.product_name}</li>)
         )}
     </ul>
       <button

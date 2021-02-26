@@ -1,11 +1,12 @@
 import isEmpty from 'is-empty';
-import { SET_CURRENT_USER, USER_LOADING } from '../actions/types';
+import { SET_CURRENT_USER, USER_LOADING ,UPDATE_CART} from '../actions/types';
 
 export const initialState = {
   isAuthenticated: false,
   user: {},
   resetSuccess: false,
   loading: false,
+  cart:[]
 };
 
 export const reducer = function(state = initialState, action) {
@@ -22,6 +23,11 @@ export const reducer = function(state = initialState, action) {
         ...state,
         loading: true,
       };
+      case UPDATE_CART:
+        return {
+...state,
+cart: action.payload
+        }
 
     default:
       return state;

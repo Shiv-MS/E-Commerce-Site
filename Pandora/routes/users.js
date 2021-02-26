@@ -24,7 +24,8 @@ router.post('/cart',async(req,res)=>{
     if (cart) {
         cart.products.push(itemId);
       cart = await cart.save();
-      return res.status(201).send(cart);
+      cart = await Cart.findOne({userId:userId}).populate("products");
+      return res.status(201).send(cart.products);
     } else {
       //no cart for user, create new cart
       const newCart = await Cart.create({
@@ -49,7 +50,32 @@ router.get('/cart',async(req,res)=>{
   }) ;
   try {
     let cart = await Cart.findOne({userId:userId}).populate("products"); 
-    
+    if (!cart) {
+      return 'Empty Shopping Cart'
+    }
+    return res.json(cart.products);
+  }
+    catch (err){
+      console.log(err);
+      res.status(500).send("Something went wrong");
+    }
+});
+
+router.delete('/cart',async(req,res)=>{
+  const {  _id, name, email, date } = req.user;
+  const itemId = req.body.item;
+  const userId = _id;
+  console.log({
+    userId,
+    itemId
+  }) ;
+  try {
+    let cart = await Cart.findOne({userId:userId});
+    // let itemIndex = cart.products.findIndex(p => p == itemId);
+    // let newProductList = cart.products.splice(itemIndex,1)
+   cart.products = cart.products.filter(product => product !== itemId );
+   cart = await cart.save();
+   cart = await Cart.findOne({userId:userId}).populate("products");
     return res.json(cart.products);
   }
     catch (err){
