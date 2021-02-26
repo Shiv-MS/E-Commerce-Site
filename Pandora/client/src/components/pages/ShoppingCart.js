@@ -3,6 +3,9 @@ import { Store } from "../../store";
 import { logoutUser  } from "../../store/actions/authActions";
 import { UPDATE_CART} from "../../store/actions/types";
 import API from "../../utils/apiHelper";
+import './ShoppingCart.css'
+import Subtotal from './Subtotal.js';
+
 
 const ShopppingCart = (props) => {
   const { state, dispatch } = useContext(Store);
@@ -33,15 +36,28 @@ const ShopppingCart = (props) => {
   }
   return (
     <div>
-
-      <ul>
+    <div className="checkout">
+        <div className="checkout_left">
+            <img
+            className="checkout_ad"
+            src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
+            />
+            <div>
+              <h2 className="checkout_title"> Your Shopping Basket</h2>
+              <ul>
          {shoppingCart.length < 1 ? (
            <p>Add items</p>
         ) : (
           shoppingCart.map((item,i) => <li key={item._id+i}>{item.product_name}</li>)
         )}
     </ul>
-      <button
+            </div>
+        </div>
+        <div className="checkout_right">
+          <Subtotal />
+        </div>
+    </div>
+    <button
         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
         style={{
           width: "150px",
