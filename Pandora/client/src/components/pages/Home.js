@@ -38,6 +38,7 @@ const Home = props => {
   console.log({ state, props });
   const [products,setProducts] = useState([]);
   useEffect(()=>{
+  
   API.get_product().then((product)=>{
   // setProducts([...product.data]);
   const data = [...product.data]
@@ -57,11 +58,11 @@ const Home = props => {
         alt=""
       />
 
-      <Grid container spacing={3} justify="center"> {
-        products.map(({product_name,product_price,_id}) =>(
+      <Grid container spacing={3} justify="center" className='home_row'> {
+        (products||productSeed).map(({product_name,product_price,_id}) =>(
         <Grid item xl={3} lg={3} sm={5} md={5} xs={12} key={_id}  >
         
-          <Product product_name={product_name} product_price={product_price} product_description ></Product>
+          <Product product_name={product_name} product_price={product_price} product_description _id={_id}></Product>
         
         </Grid>
         ))}

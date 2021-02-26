@@ -1,6 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./Product.css";
-function Product({product_name,image,product_price,rating}) {
+import API from '../../utils/API';
+
+function Product({product_name,image,product_price,rating,_id}) {
+    const addToCart = (item)=>{
+         API.add_to_cart(item)
+        .then((res)=>{
+            console.log(res)
+        })
+    }
     return (
         <div className='product'>
             <div className="product_info">
@@ -16,7 +24,7 @@ function Product({product_name,image,product_price,rating}) {
                 </div>
             </div>
             <img src={image} alt=""/>
-            <button>Add to Basket</button>
+            <button onClick={()=>{addToCart(_id)}}>Add to Basket</button>
         </div>
     )
 }
