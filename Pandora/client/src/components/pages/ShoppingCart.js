@@ -3,6 +3,7 @@ import { Store } from "../../store";
 import { logoutUser } from "../../store/actions/authActions";
 import API from "../../utils/apiHelper";
 import './ShoppingCart.css'
+import Subtotal from './Subtotal.js';
 
 
 const ShopppingCart = (props) => {
@@ -51,10 +52,10 @@ const ShopppingCart = (props) => {
             </div>
         </div>
         <div className="checkout_right">
-          <h2>Subtotal will go here</h2>
+          <Subtotal />
         </div>
     </div>
-      <button
+    <button
         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
         style={{
           width: "150px",
