@@ -10,7 +10,6 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
 const productRoutes = require('./routes/product');
-
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -41,8 +40,7 @@ const requiresAuth = passport.authenticate('jwt', { session: false });
 app.use('/api/auth', authRoutes);
 
 // For all authenticated routes, make sure to use this
-app.use('/api/users', /*requiresAuth,*/ usersRoutes);
-
+app.use('/api/users', requiresAuth, usersRoutes);
 app.use('/api/product',productRoutes);
 
 // For production, serve compiled React app in client build directory.
