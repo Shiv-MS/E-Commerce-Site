@@ -1,15 +1,15 @@
-import isEmpty from 'is-empty';
-import { SET_CURRENT_USER, USER_LOADING ,UPDATE_CART} from '../actions/types';
+import isEmpty from "is-empty";
+import { SET_CURRENT_USER, USER_LOADING, UPDATE_CART } from "../actions/types";
 
 export const initialState = {
   isAuthenticated: false,
   user: {},
   resetSuccess: false,
   loading: false,
-  cart:[]
+  cart: [],
 };
 
-export const reducer = function(state = initialState, action) {
+export const reducer = function (state = initialState, action) {
   switch (action.type) {
     case SET_CURRENT_USER:
       return {
@@ -23,11 +23,11 @@ export const reducer = function(state = initialState, action) {
         ...state,
         loading: true,
       };
-      case UPDATE_CART:
-        return {
-...state,
-cart: action.payload
-        }
+    case UPDATE_CART:
+      return {
+        ...state,
+        cart: action.payload,
+      };
 
     default:
       return state;
