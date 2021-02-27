@@ -8,7 +8,7 @@ import "./Home.css"
 
 const Home = props => {
   const { state } = useContext(Store);
-
+ 
   let productSeed = [
     {
       product_name:'Miss',
@@ -59,7 +59,7 @@ const Home = props => {
       />
 
       <Grid container spacing={3} justify="center" className='home_row'> {
-        (products||productSeed).map(({product_name,product_price,_id,image}) =>(
+        (props.productQueryResults.length <= 0 ? products: props.productQueryResults).map(({product_name,product_price,_id,image}) =>(
         <Grid item xl={3} lg={3} sm={5} md={5} xs={12} key={_id}  >
         
           <Product product_name={product_name} product_price={product_price} product_description _id={_id} image={image}></Product>

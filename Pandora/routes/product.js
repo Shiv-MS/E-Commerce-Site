@@ -17,6 +17,13 @@ res.json(responseDB)
         console.log(message)
     })
 });
+router.post('/byname',({body},res)=>{
+    Product.find(body).then((responseDB)=>{
+res.json(responseDB)
+    }).catch(({message})=>{
+        console.log(message)
+    })
+});
 router.post('/bulk',({body},res)=>{
     Product.insertMany(body).then((responseDB)=>{
 console.log(responseDB);

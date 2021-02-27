@@ -3,8 +3,9 @@ import { Store } from "../../store";
 import { logoutUser } from "../../store/actions/authActions";
 import { UPDATE_CART } from "../../store/actions/types";
 import API from "../../utils/apiHelper";
-import './ShoppingCart.css';
-import Subtotal from './Subtotal.js';
+import "./ShoppingCart.css";
+import "./Product.css"
+import Subtotal from "./Subtotal.js";
 
 const ShopppingCart = (props) => {
   const { state, dispatch } = useContext(Store);
@@ -27,11 +28,10 @@ const ShopppingCart = (props) => {
     logoutUser(props.history)(dispatch);
   };
   const deleteItem = (id) => {
-    API.delete_cart(id)
-        .then((res)=>{
-            dispatch({type:UPDATE_CART , payload:res.data})
-            console.log(res)
-        })
+    API.delete_cart(id).then((res) => {
+      dispatch({ type: UPDATE_CART, payload: res.data });
+      console.log(res);
+    });
   };
   return (
     <div>
@@ -40,7 +40,7 @@ const ShopppingCart = (props) => {
           <img
             className="checkout_ad"
             src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
-          />
+       alt='promotional banner'   />
           <div>
             <h2 className="checkout_title"> Your Shopping Basket</h2>
             <ul>
@@ -48,11 +48,19 @@ const ShopppingCart = (props) => {
                 <p>Add items</p>
               ) : (
                 shoppingCart.map((item, i) => (
-                  <li key={item._id + i}>
-                    <div>{ item.product_name}</div> 
-                    <div>{ item.product_price}</div>
-                <button id={item._id} onClick={()=>{deleteItem(item._id)}}>Remove from cart</button>
-                    </li>
+                  <div className="product" key={item._id + i}>
+                    <div className="product_info">
+                      <div>{item.product_name}</div>
+                      <p className="product_price">
+                        <small>$</small>
+                        <strong>{item.product_price}</strong>
+                      </p>
+                    </div>
+                    <img src={item.image} alt=""/>
+                    <button id={item._id} onClick={() => { deleteItem(item._id); }}>
+                      Remove from cart
+                    </button>
+                  </div>
                 ))
               )}
             </ul>

@@ -6,9 +6,12 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import {Link} from 'react-router-dom';
 import API from '../../utils/API';
 import {UPDATE_CART} from '../../store/actions/types';
-function Header() {
+import Product from "./Product";
+function Header({productQuery,setProductQuery,searchProduct}) {
   const {state,dispatch}= useContext(Store)
   const user = state.auth.user;
+  
+//currentUser 
   useEffect(()=>{
     API.get_cart()
       .then((res) => {
@@ -17,6 +20,12 @@ function Header() {
       })
       .catch((err) => console.log({ err }));
   },[user])
+  //useEfect getting the cart when it first load and passing the items and count to the global sate
+
+  
+
+
+
   return (
     <div className="header">
       <Link to='/'>
@@ -24,8 +33,8 @@ function Header() {
         src="https://via.placeholder.com/150C/O https://placeholder.com/" alt="" className="header_logo"/>
         </Link>
       <div className="header_search">
-        <input type="text" className="header_searchInput" />
-        <SearchIcon className='header_searchIcon'/>
+        <input type="text" className="header_searchInput" value={productQuery} onChange={(e)=>{setProductQuery(e.target.value)}}/>
+        <SearchIcon className='header_searchIcon' onClick={()=>{searchProduct(productQuery)}}/>
         {/* {logo} */}
       </div>
       <div className="header_nav">
@@ -40,8 +49,8 @@ function Header() {
           <span className="header_optionLineTwo">& Orders</span>
         </div>
         <div className="header_option">
-          <span className="header_optionLineOne">Your</span>
-          <span className="header_optionLineTwo">Prime</span>
+          <span className="header_optionLineOne">Coming</span>
+          <span className="header_optionLineTwo">Soon...</span>
         </div>
         <div className="header_optionBasket"><ShoppingBasketIcon/>
   <span className="header_optionLineTwo header_basketCount">{user.name ? state.auth.cart.length : ''}</span></div>

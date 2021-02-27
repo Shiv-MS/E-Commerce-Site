@@ -12,9 +12,17 @@ import Login from './components/pages/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import ShoppingCart from './components/pages/ShoppingCart';
 import Header  from './components/pages/Header';
-
+import API from './utils/API';
 const App = () => {
   const { dispatch } = useContext(Store);
+  // const [productQuery,setProductQuery] = useState({
+  //   search:'',
+  //   filtered:[],
+  //   loading:true,
+  //   notFound:false
+  // });
+  const [productQuery,setProductQuery] = useState('');
+  const [productQueryResults,setProductQueryResults]= useState([]);
   useEffect(() => {
     if (localStorage.jwtToken) {
       const token = localStorage.jwtToken;
@@ -31,11 +39,22 @@ const App = () => {
     }
   }, [ dispatch ]);
 
+  const searchProduct = name =>{
+    API.getByName(name).then((items)=>{
+      setProductQueryResults(items.data);
+    }).catch((err)=>{
+console.log(err.message);
+    })
+    }
+  
+
   return (
     <Router>
       <div className="App">
-        <Header/>
-        <Route exact path="/" component={Home} />
+        <Header searchProduct={searchProduct} productQuery={productQuery} setProductQuery={setProductQuery}/>
+        <Route exact path="/">
+          <Home productQueryResults={productQueryResults}/>
+          </Route>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Switch>

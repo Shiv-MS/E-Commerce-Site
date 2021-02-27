@@ -1,6 +1,8 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./Subtotal.css";
 import CurrencyFormat from "react-currency-format";
+import {Store} from "../../store";
+
 // import { useStateValue } from "./StateProvider";
 // import { getBasketTotal } from "./reducer";
 // import { useHistory } from "react-router-dom";
@@ -8,10 +10,17 @@ import CurrencyFormat from "react-currency-format";
 function Subtotal() {
 //   const history = useHistory();
 //   const [{ basket }, dispatch] = useStateValue();
-let subtotal = 10;
-let value = 10;
-let basket = [0];
+const {state,dispatch} = useContext(Store);
+const shoppingCart = state.auth.cart;
 
+const getBasketTotal = (basket) =>{
+    if(basket.length > 0){
+    const priceArray = basket.map(({product_price}) => product_price);
+    const reducer = (accumulator, currentValue) => accumulator+ currentValue;
+   return priceArray.reduce(reducer) 
+    }
+
+}
   return (
     <div className="subtotal">
       <CurrencyFormat
@@ -19,18 +28,18 @@ let basket = [0];
           <>
             <p>
               {/* Part of the homework */}
-              Subtotal ({basket.length} items): <strong>{value}</strong>
+              Subtotal ({shoppingCart.length} items): <strong>{value}</strong>
             </p>
             <small className="subtotal__gift">
               <input type="checkbox" /> This order contains a gift
             </small>
           </>
         )}
-        // decimalScale={2}
-        // value={getBasketTotal(basket)} // Part of the homework
-        // displayType={"text"}
-        // thousandSeparator={true}
-        // prefix={"$"}
+        decimalScale={2}
+        value={getBasketTotal(shoppingCart)} // Part of the homework
+        displayType={"text"}
+        thousandSeparator={true}
+        prefix={"$"}
       />
 
       <button>Proceed to Checkout</button>
