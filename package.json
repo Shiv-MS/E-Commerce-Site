@@ -1,6 +1,6 @@
 {
     "version": "1.0.0",
-    "name": "mern-passport-template",
+    "name": "pandora",
     "license": "MIT",
     "description": "Starter MERN application with Passport user authentication using JSON Web Tokens.",
     "main": "server.js",
