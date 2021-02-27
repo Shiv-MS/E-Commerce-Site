@@ -30,7 +30,7 @@ function Header({productQuery,setProductQuery,searchProduct}) {
     <div className="header">
       <Link to='/'>
       <img
-        src="https://via.placeholder.com/150C/O https://placeholder.com/" alt="" className="header_logo"/>
+        src="https://trufit-assets.s3.amazonaws.com/003Project/images/images.png" alt="" className="header_logo"/>
         </Link>
       <div className="header_search">
         <input type="text" className="header_searchInput" value={productQuery} onChange={(e)=>{setProductQuery(e.target.value)}}/>
@@ -60,3 +60,4 @@ function Header({productQuery,setProductQuery,searchProduct}) {
 }
 
 export default Header;
+

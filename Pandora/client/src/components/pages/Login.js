@@ -37,7 +37,7 @@ const Login = (props) => {
     <div className="login">
       <Link to="/">
         <img
-          src="https://via.placeholder.com/150C/O https://placeholder.com/"
+          src="https://trufit-assets.s3.amazonaws.com/003Project/images/images.png"
           alt=""
           className="login_logo"
         />
