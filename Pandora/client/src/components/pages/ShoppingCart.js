@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Store } from "../../store";
 import { logoutUser } from "../../store/actions/authActions";
-// import { UPDATE_CART } from "../../store/actions/types";
+import { UPDATE_CART } from "../../store/actions/types";
 import API from "../../utils/apiHelper";
 import './ShoppingCart.css';
 import Subtotal from './Subtotal.js';
@@ -26,30 +26,14 @@ const ShopppingCart = (props) => {
 
     logoutUser(props.history)(dispatch);
   };
-  const deleteItem = (id) => {};
+  const deleteItem = (id) => {
+    API.delete_cart(id)
+        .then((res)=>{
+            dispatch({type:UPDATE_CART , payload:res.data})
+            console.log(res)
+        })
+  };
   return (
-    // <div>
-
-    //   <ul>
-    //      {shoppingCart.length < 1 ? (
-    //        <p>Add items</p>
-    //     ) : (
-    //       shoppingCart.map((item,i) => <li key={item._id+i}>{item.product_name}</li>)
-    //     )}
-    // </ul>
-    //   <button
-    //     className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-    //     style={{
-    //       width: "150px",
-    //       borderRadius: "3px",
-    //       letterSpacing: "1.5px",
-    //       marginTop: "1rem",
-    //     }}
-    //     onClick={onLogoutClick}
-    //   >
-    //     Logout
-    //   </button>
-    // </div>
     <div>
       <div className="checkout">
         <div className="checkout_left">
@@ -67,7 +51,7 @@ const ShopppingCart = (props) => {
                   <li key={item._id + i}>
                     <div>{ item.product_name}</div> 
                     <div>{ item.product_price}</div>
-                    <button id={item.id}>Remove from cart</button>
+                <button id={item._id} onClick={()=>{deleteItem(item._id)}}>Remove from cart</button>
                     </li>
                 ))
               )}
