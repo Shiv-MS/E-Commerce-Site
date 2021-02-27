@@ -10,7 +10,7 @@ module.exports = {
     get_cart:()=>{
         return axios.get('/api/users/cart')
     },
-    delete_cart:(id)=>{
-        return axios.get(`/api/users/cart/${id}`)
+    getByName:(name)=>{
+        return axios.post('/api/product/byname',{product_name:name});
     }
 }

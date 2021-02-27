@@ -12,6 +12,9 @@ const ProductSchema = new Schema ({
     },
     product_description:{
         type:String,
+    },
+    image:{
+        type:String,
     }
 
 });

@@ -61,9 +61,9 @@ router.get('/cart',async(req,res)=>{
     }
 });
 
-router.delete('/cart',async(req,res)=>{
+router.delete('/cart/:id',async(req,res)=>{
   const {  _id, name, email, date } = req.user;
-  const itemId = req.body.item;
+  const itemId = req.params.id;
   const userId = _id;
   console.log({
     userId,
@@ -73,7 +73,8 @@ router.delete('/cart',async(req,res)=>{
     let cart = await Cart.findOne({userId:userId});
     // let itemIndex = cart.products.findIndex(p => p == itemId);
     // let newProductList = cart.products.splice(itemIndex,1)
-   cart.products = cart.products.filter(product => product !== itemId );
+   cart.products = cart.products.filter(product => product != itemId );
+   
    cart = await cart.save();
    cart = await Cart.findOne({userId:userId}).populate("products");
     return res.json(cart.products);

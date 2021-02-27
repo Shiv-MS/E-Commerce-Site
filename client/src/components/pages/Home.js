@@ -8,7 +8,7 @@ import "./Home.css"
 
 const Home = props => {
   const { state } = useContext(Store);
-
+ 
   let productSeed = [
     {
       product_name:'Miss',
@@ -54,16 +54,13 @@ const Home = props => {
     <div className="home_container">
       <img
         className="home_image"
-        src="https://via.placeholder.com/1500x600.png?C/Ohttps://placeholder.com/"
-        alt=""
-      />
-
-      <Grid container spacing={3} justify="center" className='home_row'> {
-        (products||productSeed).map(({product_name,product_price,_id}) =>(
+        src="https://i.pinimg.com/originals/4d/49/1d/4d491d7fefa56b86a888e0f1c218f652.jpg" alt="Background image"/>
+      <Grid container spacing={3} justify="center" className="home_row"> {
+        (props.productQueryResults.length <= 0 ? products: props.productQueryResults).map(({product_name,product_price,_id,image}) =>(
         <Grid item xl={3} lg={3} sm={5} md={5} xs={12} key={_id}  >
         
-          <Product product_name={product_name} product_price={product_price} product_description _id={_id}></Product>
-        
+          <Product product_name={product_name} product_price={product_price} product_description _id={_id} image={image}></Product>
+  
         </Grid>
         ))}
       </Grid>
@@ -74,3 +71,4 @@ const Home = props => {
 };
 
 export default Home;
+
