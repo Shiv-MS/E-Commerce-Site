@@ -11,6 +11,6 @@ module.exports = {
         return axios.get('/api/users/cart')
     },
     getByName:(name)=>{
-        return axios.post('/api/product/byname',{product_name:name});
+        return axios.post('/api/product/byname',{name: name});
     }
 }
