@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 // Mongoose connection to MongoDB. (https://mongoosejs.com/docs/guide.html)
 mongoose.connect(
-    // process.env.MONGODB_URI || 
+    process.env.MONGODB_URI || 
   `mongodb://localhost:27017/${process.env.MONGODB_DATABASE}`,
   {
     useNewUrlParser: true,

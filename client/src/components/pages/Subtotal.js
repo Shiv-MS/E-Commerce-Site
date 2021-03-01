@@ -10,7 +10,7 @@ import {Store} from "../../store";
 function Subtotal() {
 //   const history = useHistory();
 //   const [{ basket }, dispatch] = useStateValue();
-const {state,dispatch} = useContext(Store);
+const {state} = useContext(Store);
 const shoppingCart = state.auth.cart;
 
 const getBasketTotal = (basket) =>{
