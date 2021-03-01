@@ -22,7 +22,10 @@ function Header({productQuery,setProductQuery,searchProduct}) {
   },[user])
   //useEfect getting the cart when it first load and passing the items and count to the global sate
 
-  
+const handleSubmit = (e) =>{
+e.preventDefault();
+searchProduct(productQuery);
+}
 
 
 
@@ -33,8 +36,10 @@ function Header({productQuery,setProductQuery,searchProduct}) {
         src="https://trufit-assets.s3.amazonaws.com/003Project/images/images.png" alt="" className="header_logo"/>
         </Link>
       <div className="header_search">
+        <form onSubmit={handleSubmit}>
         <input type="text" className="header_searchInput" value={productQuery} onChange={(e)=>{setProductQuery(e.target.value)}}/>
-        <SearchIcon className='header_searchIcon' onClick={()=>{searchProduct(productQuery)}}/>
+        <SearchIcon className='header_searchIcon' onClick={handleSubmit}/>
+        </form>
         {/* {logo} */}
       </div>
       <div className="header_nav">
