@@ -6,7 +6,7 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import { UPDATE_CART } from "../../store/actions/types";
-import Product from "./Product";
+
 function Header({ productQuery, setProductQuery, searchProduct }) {
   const { state, dispatch } = useContext(Store);
   const user = state.auth.user;
