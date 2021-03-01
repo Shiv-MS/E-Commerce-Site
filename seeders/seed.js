@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
 let Product = require("../models/Merchandise");
 
-mongoose.connect("mongodb://localhost/e_commerce_db", {
+mongoose.connect(process.env.MONGODB_URI||"mongodb://localhost/e_commerce_db", {
   useNewUrlParser: true,
   useFindAndModify: false
 });

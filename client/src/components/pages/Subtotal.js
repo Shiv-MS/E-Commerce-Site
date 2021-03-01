@@ -18,6 +18,8 @@ const getBasketTotal = (basket) =>{
     const priceArray = basket.map(({product_price}) => product_price);
     const reducer = (accumulator, currentValue) => accumulator+ currentValue;
    return priceArray.reduce(reducer) 
+    } else {
+      return 0
     }
 
 }

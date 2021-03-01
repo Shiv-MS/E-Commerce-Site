@@ -42,6 +42,7 @@ const App = () => {
   const searchProduct = name =>{
     API.getByName(name).then((items)=>{
       setProductQueryResults(items.data);
+      console.log(items)
     }).catch((err)=>{
 console.log(err.message);
     })
