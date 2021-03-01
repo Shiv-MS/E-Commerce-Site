@@ -17,9 +17,11 @@ res.json(responseDB)
         console.log(message)
     })
 });
-router.post('/byname',({body},res)=>{
-    Product.find(body).then((responseDB)=>{
-res.json(responseDB)
+router.post('/byname',(req,res)=>{
+    
+    Product.find({product_name:{$regex: req.body.name, $options: "i" }}).then((responseDB)=>{
+res.json(responseDB);
+res.send(responseDB)
     }).catch(({message})=>{
         console.log(message)
     })
