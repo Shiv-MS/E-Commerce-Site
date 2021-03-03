@@ -1,0 +1,20 @@
+.paymentContainer {
+    margin: 0 auto;
+    overflow: auto;
+    max-height: 500px;
+    
+}
+.payment_items{
+margin: 2rem;
+}
+.payment {
+    margin: 0 auto;
+    max-width: 60vw;
+    max-height: 1000px;
+}
+
+@media only screen and (min-width: 600px) {
+    .payment {
+        max-width: 60vw;
+    }
+  }
