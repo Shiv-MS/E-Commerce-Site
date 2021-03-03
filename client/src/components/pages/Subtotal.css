@@ -33,5 +33,9 @@
   @media only screen and (max-width: 600px) {
     .subtotal {
       width: 30vw;
+      
+    }
+    .subtotal > button {
+      font-size: .6rem;
     }
   }
