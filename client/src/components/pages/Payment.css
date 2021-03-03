@@ -1,0 +1,33 @@
+.paymentContainer {
+    margin: 0 auto;
+    overflow: auto;
+    max-height: 500px;
+    
+    
+}
+.payment_section {
+    background-color: white;
+    border-bottom: .1px solid black;
+    border-radius: 0.5rem;
+    margin: 5px;
+    padding: 5px;
+}
+.payment_items{
+margin: 2rem;
+}
+.payment {
+    margin: 0 auto;
+    max-width: 60vw;
+    max-height: 1000px;
+}
+.payment_section .subtotal{
+    margin: 0 auto;
+    background-color:white;
+    border:none;
+}
+
+@media only screen and (min-width: 600px) {
+    .payment {
+        max-width: 60vw;
+    }
+  }
