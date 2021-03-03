@@ -56,7 +56,9 @@ const ShopppingCart = (props) => {
                         <strong>{item.product_price}</strong>
                       </p>
                     </div>
+                    <div className='img'>
                     <img src={item.image} alt=""/>
+                    </div>
                     <button id={item._id} onClick={() => { deleteItem(item._id); }}>
                       Remove from cart
                     </button>
@@ -67,7 +69,7 @@ const ShopppingCart = (props) => {
           </div>
         </div>
         <div className="checkout_right">
-          <Subtotal />
+          <Subtotal shopping={true}/>
         </div>
       </div>
       <button

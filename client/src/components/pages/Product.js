@@ -26,7 +26,7 @@ function Product({product_name,image,product_price,rating,_id}) {
                    ))} 
                 </div>
             </div>
-            <img src={image} alt=""/>
+            <img src={image}  alt=""/>
             <button onClick={()=>{addToCart(_id)}}>Add to Basket</button>
         </div>
     )

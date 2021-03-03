@@ -3,12 +3,14 @@ import { Store } from '../../store';
 import Product from "./Product";
 import Grid from "@material-ui/core/Grid";
 import API from "../../utils/API.js";
-import "./Home.css"
+import "./Home.css";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 // import { Link } from 'react-router-dom';
 
 const Home = props => {
   const { state } = useContext(Store);
- 
+ const [pending,setPending] = useState(false);
   let productSeed = [
     {
       product_name:'Miss',
@@ -38,12 +40,13 @@ const Home = props => {
   console.log({ state, props });
   const [products,setProducts] = useState([]);
   useEffect(()=>{
-  
+  setPending(true);
   API.get_product().then((product)=>{
   // setProducts([...product.data]);
   const data = [...product.data]
   console.log(data);
-  setProducts(data)
+  setProducts(data);
+  setPending(false)
   }).catch(({message})=>{
     console.log(message);
   })
@@ -53,13 +56,13 @@ const Home = props => {
     <div className="home">
     <div className="home_container">
       <Grid container spacing={3} justify="center" className="home_row"> {
-        (props.productQueryResults.length <= 0 ? products: props.productQueryResults).map(({product_name,product_price,_id,image}) =>(
+        (pending? <CircularProgress color="secondary" />:(props.productQueryResults.length <= 0 ? products: props.productQueryResults).map(({product_name,product_price,_id,image}) =>(
         <Grid item xl={3} lg={3} sm={5} md={5} xs={12} key={_id}  >
         
           <Product product_name={product_name} product_price={product_price} product_description _id={_id} image={image}></Product>
   
         </Grid>
-        ))}
+        )))}
       </Grid>
         
     </div>

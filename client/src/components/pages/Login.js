@@ -19,7 +19,7 @@ const Login = (props) => {
     e.preventDefault();
 
     dispatch(setErrors({ response: { data: {} } }));
-
+console.log(errors)
     const userData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -60,6 +60,7 @@ const Login = (props) => {
             type="password"
             className={classnames("", { invalid: errors.incorrect })}
           />
+          {errors? <p className="error">{errors.message}</p> : ""}
           <button className="login_signInButton" type="submit">
             Sign-in
           </button>

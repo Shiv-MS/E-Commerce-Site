@@ -24,7 +24,7 @@ export default function Payment() {
 
                 <div className="payment_section"> 
                 <div className="payment_title">
-                    <h3>review items</h3>
+                    <h3>Review</h3>
                 </div>
                 <div className="payment_items">
                 <Grid container justify="center" className='paymentContainer' spacing={3}>
@@ -34,8 +34,8 @@ export default function Payment() {
               ) : (
                
                 shoppingCart.map((item, i) => (
-                    <Grid item   xl={12} lg={12} sm={12} md={12} xs={12} style={{maxWidth:'300px'}}>
-                  <div className="product" key={item._id + i}>
+                    <Grid item   xl={12} lg={12} sm={12} md={12} xs={12} style={{maxWidth:'300px'}} key={item._id + i}>
+                  <div className="product" >
                     <div className="product_info">
                       <div>{item.product_name}</div>
                       <p className="product_price">
@@ -50,9 +50,11 @@ export default function Payment() {
               )}</Grid>
                 </div>
                 </div>
-                <div className="payment_section"><div className="checkout_right">
+                <div className="payment_section">
+                  <div className="subtotal_container">
           <Subtotal />
-        </div> </div>
+          </div>
+        </div>
             </div>
         </div>
         )

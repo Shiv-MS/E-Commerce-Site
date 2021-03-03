@@ -2,17 +2,18 @@ import React,{useContext} from "react";
 import "./Subtotal.css";
 import CurrencyFormat from "react-currency-format";
 import {Store} from "../../store";
+import {useHistory}  from 'react-router-dom';
 
 // import { useStateValue } from "./StateProvider";
 // import { getBasketTotal } from "./reducer";
 // import { useHistory } from "react-router-dom";
 
-function Subtotal() {
+function Subtotal({shopping}) {
 //   const history = useHistory();
 //   const [{ basket }, dispatch] = useStateValue();
 const {state} = useContext(Store);
 const shoppingCart = state.auth.cart;
-
+const history = useHistory();
 const getBasketTotal = (basket) =>{
     if(basket.length > 0){
     const priceArray = basket.map(({product_price}) => product_price);
@@ -22,6 +23,9 @@ const getBasketTotal = (basket) =>{
       return 0
     }
 
+}
+const checkout = () =>{
+  history.push('/payment');
 }
   return (
     <div className="subtotal">
@@ -44,7 +48,7 @@ const getBasketTotal = (basket) =>{
         prefix={"$"}
       />
 
-      <button>Proceed to Checkout</button>
+      <button onClick={shoppingCart.length > 0 ? checkout:null}>{shopping?'Proceed to Checkout':'Confirm Order'}</button>
     </div>
   );
 }
