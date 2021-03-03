@@ -13,6 +13,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import ShoppingCart from './components/pages/ShoppingCart';
 import Header  from './components/pages/Header';
 import API from './utils/API';
+import Payment from './components/pages/Payment';
 const App = () => {
   const { dispatch } = useContext(Store);
   // const [productQuery,setProductQuery] = useState({
@@ -58,6 +59,7 @@ console.log(err.message);
           </Route>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/payment" component={Payment} />
         <Switch>
           <PrivateRoute exact path="/shoppingCart" component={ShoppingCart} />
         </Switch>
