@@ -4,6 +4,7 @@ import "./Product.css"
 import { Grid } from "@material-ui/core";
 import "./Payment.css";
 import Subtotal from './Subtotal';
+import returnQtys from "../../utils/getQty"
 export default function Payment() {
     const { state, dispatch } = useContext(Store);
   const user = state.auth.user;
@@ -33,7 +34,7 @@ export default function Payment() {
                 <p>Add items</p>
               ) : (
                
-                shoppingCart.map((item, i) => (
+                returnQtys(shoppingCart).map((item, i) => (
                     <Grid item   xl={12} lg={12} sm={12} md={12} xs={12} style={{maxWidth:'300px'}} key={item._id + i}>
                   <div className="product" >
                     <div className="product_info">
@@ -44,6 +45,7 @@ export default function Payment() {
                       </p>
                     </div>
                     <img src={item.image} alt=""/>
+                    <div className="quantity">Quantity:{item.qty}</div>
                   </div>
                   </Grid>
                 ))

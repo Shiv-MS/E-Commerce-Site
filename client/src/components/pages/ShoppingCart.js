@@ -6,11 +6,13 @@ import API from "../../utils/apiHelper";
 import "./ShoppingCart.css";
 import "./Product.css"
 import Subtotal from "./Subtotal.js";
+import returnQtys from "../../utils/getQty"
 
 const ShopppingCart = (props) => {
   const { state, dispatch } = useContext(Store);
   const user = state.auth.user;
   const shoppingCart = state.auth.cart;
+  console.log(shoppingCart)
   useEffect(() => {
     if (!state.auth.isAuthenticated) props.history.push("/login");
 
@@ -33,6 +35,7 @@ const ShopppingCart = (props) => {
       console.log(res);
     });
   };
+ 
   return (
     <div>
       <div className="checkout">
@@ -42,12 +45,12 @@ const ShopppingCart = (props) => {
             src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
        alt='promotional banner'   />
           <div>
-            <h2 className="checkout_title"> Your Shopping Basket</h2>
+  <h2 className="checkout_title"> Your Shopping Basket {user.name}</h2>
             <ul>
               {shoppingCart.length < 1 ? (
                 <p>Add items</p>
               ) : (
-                shoppingCart.map((item, i) => (
+                returnQtys(shoppingCart).map((item, i) => (
                   <div className="product" key={item._id + i}>
                     <div className="product_info">
                       <div>{item.product_name}</div>
@@ -59,6 +62,7 @@ const ShopppingCart = (props) => {
                     <div className='img'>
                     <img src={item.image} alt=""/>
                     </div>
+                <div className="quantity">Quantity:{item.qty}</div>
                     <button id={item._id} onClick={() => { deleteItem(item._id); }}>
                       Remove from cart
                     </button>
