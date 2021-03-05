@@ -11,23 +11,43 @@
     border-radius: 0.5rem;
     margin: 5px;
     padding: 5px;
+    width: 100%;
 }
 .payment_items{
 margin: 2rem;
 }
 .payment {
-    margin: 0 auto;
+    margin: 0 auto 200px auto;
     max-width: 60vw;
-    height: 100vh;
+    /* height: 100vh; */
+    /* overflow: hidden; */
+    padding-bottom: 3em;
 }
 .payment_section .subtotal{
     margin: 0 auto;
     background-color:white;
     border:none;
+    margin-bottom: 20px;
 }
+.top {
+    display: flex;
+    justify-content: space-around;
+}
+/* .top .payment_section {
+    width: auto;} */
 
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
     .payment {
         max-width: 60vw;
     }
+    
   }
+
+  @media only screen and (max-width: 800px) {
+    .top {
+        display: flex;
+        flex-direction: column;
+    }
+    
+  } */
+ 

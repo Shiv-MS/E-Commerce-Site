@@ -1,24 +1,19 @@
 .footer {
-    height: 60px;
+    position: fixed;
+    bottom: 0;
+    
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    position: sticky;
-    background-color: black;
-    bottom: 0;
-    z-index: 100;
+    justify-content: space-evenly;
     width: 100%;
-    /* max-width: 1500px; */
-    /* min-width: 26.7rem; */
+    margin: 0 auto;
+    border-top: 1px solid #ffefef;
+    background: black;
+    max-height: 50px;
   }
   @media only screen and (min-width: 600px) {
     .footer{
         max-width: 100vw;
     }
   }
-  @media only screen and (max-width: 450px) {
-    .footer{
-      flex-direction: column;
-      /* position: relative; */
-    }
-  }
+ 
