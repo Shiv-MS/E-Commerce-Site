@@ -57,6 +57,7 @@ console.log(err.message);
         <Header searchProduct={searchProduct} productQuery={productQuery} setProductQuery={setProductQuery}/>
         <Route exact path="/">
           <Home productQueryResults={productQueryResults}/>
+          
           </Route>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
@@ -64,6 +65,7 @@ console.log(err.message);
         <Switch>
           <PrivateRoute exact path="/shoppingCart" component={ShoppingCart} />
         </Switch>
+        
         <Footer/>
       </div>
     </Router>

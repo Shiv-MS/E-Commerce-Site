@@ -2,8 +2,9 @@
     display: flex;
     padding: 20px;
     background-color: white;
-    height: 100%;
-    overflow:scroll
+    /* height: 100%; */
+    /* overflow:scroll */
+    padding-bottom: 3em;
 }
 
 .checkout_ad {
@@ -38,9 +39,9 @@
       flex-direction: column;
       justify-content: center;
     }
-  }
-  @media only screen and (max-height: 900px ) and (max-width: 450px){
+  } 
+  /* @media only screen and (max-height: 900px ) and (max-width: 450px){
     .checkout {
       padding-top: 200px;
     }
-  }
+  }  */
