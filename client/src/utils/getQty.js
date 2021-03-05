@@ -9,7 +9,7 @@ export default function returnQtys(array){
          qty:count.length,
      }
      })
- console.log(newArray);
+//  console.log(newArray);
      const result = Array.from(new Set(newArray.map(x=>x._id))).map(_id =>{
          return{
             _id: _id,

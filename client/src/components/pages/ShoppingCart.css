@@ -2,7 +2,8 @@
     display: flex;
     padding: 20px;
     background-color: white;
-    height: max-content;
+    height: 100%;
+    overflow:scroll
 }
 
 .checkout_ad {
@@ -25,3 +26,21 @@
     padding: 1px;
     border-radius: .25rem;
 }
+.logOut {
+    background: #f0c14b;
+    margin-left: 10px;
+    color: black;
+    border-color: #a88734 #9c7e31 #846a29;
+}
+
+@media only screen and (max-width: 450px) {
+    .checkout {
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  @media only screen and (max-height: 900px ) and (max-width: 450px){
+    .checkout {
+      padding-top: 200px;
+    }
+  }

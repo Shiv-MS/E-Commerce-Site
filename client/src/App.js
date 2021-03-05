@@ -14,6 +14,7 @@ import ShoppingCart from './components/pages/ShoppingCart';
 import Header  from './components/pages/Header';
 import API from './utils/API';
 import Payment from './components/pages/Payment';
+import Footer from './components/pages/Footer';
 const App = () => {
   const { dispatch } = useContext(Store);
   // const [productQuery,setProductQuery] = useState({
@@ -63,6 +64,7 @@ console.log(err.message);
         <Switch>
           <PrivateRoute exact path="/shoppingCart" component={ShoppingCart} />
         </Switch>
+        <Footer/>
       </div>
     </Router>
   );

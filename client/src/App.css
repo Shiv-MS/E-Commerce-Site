@@ -1,6 +1,6 @@
-/* *{
-    margin: 0;
-  } */
+.App{
+  height: 100%;
+}
   a {
     text-decoration: none; /* no underline */
   }

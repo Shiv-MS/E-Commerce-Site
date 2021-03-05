@@ -1,15 +1,15 @@
-import React, {useState,useContext} from 'react';
+import React, {useContext} from 'react';
 import "./Product.css";
 import API from '../../utils/API';
 import {Store} from '../../store';
 import {UPDATE_CART} from '../../store/actions/types';
 function Product({product_name,image,product_price,rating,_id}) {
-    const {state,dispatch} = useContext(Store); 
+    const {dispatch} = useContext(Store); 
     const addToCart = (item)=>{
          API.add_to_cart(item)
         .then((res)=>{
             dispatch({type:UPDATE_CART , payload:res.data})
-            console.log(res)
+            // console.log(res)
         })
     }
     return (
