@@ -15,7 +15,7 @@ function Header({ productQuery, setProductQuery, searchProduct }) {
   useEffect(() => {
     API.get_cart()
       .then((res) => {
-        console.log({ res });
+        // console.log({ res });
         dispatch({ type: UPDATE_CART, payload: res.data });
       })
       .catch((err) => console.log({ err }));

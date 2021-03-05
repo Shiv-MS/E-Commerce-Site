@@ -9,42 +9,42 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // import { Link } from 'react-router-dom';
 
 const Home = props => {
-  const { state } = useContext(Store);
+  // const { state } = useContext(Store);
  const [pending,setPending] = useState(false);
-  let productSeed = [
-    {
-      product_name:'Miss',
-      product_price:10,
-      product_description:'',
+  // let productSeed = [
+  //   {
+  //     product_name:'Miss',
+  //     product_price:10,
+  //     product_description:'',
   
-    },
-    {
-      product_name:'Tiara',
-      product_price:12,
-      product_description:'',
+  //   },
+  //   {
+  //     product_name:'Tiara',
+  //     product_price:12,
+  //     product_description:'',
   
-    },
-    {
-      product_name:'Reloj Pastel',
-      product_price:5,
-      product_description:'',
+  //   },
+  //   {
+  //     product_name:'Reloj Pastel',
+  //     product_price:5,
+  //     product_description:'',
   
-    },{
-      product_name:'Emperatriz',
-      product_price:10,
-      product_description:'',
+  //   },{
+  //     product_name:'Emperatriz',
+  //     product_price:10,
+  //     product_description:'',
   
-    }
-  ];
+  //   }
+  // ];
   
-  console.log({ state, props });
+  // console.log({ state, props });
   const [products,setProducts] = useState([]);
   useEffect(()=>{
   setPending(true);
   API.get_product().then((product)=>{
   // setProducts([...product.data]);
   const data = [...product.data]
-  console.log(data);
+  // console.log(data);
   setProducts(data);
   setPending(false)
   }).catch(({message})=>{
