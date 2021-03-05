@@ -18,7 +18,7 @@ margin: 2rem;
 .payment {
     margin: 0 auto;
     max-width: 60vw;
-    max-height: 1000px;
+    height: 100vh;
 }
 .payment_section .subtotal{
     margin: 0 auto;
