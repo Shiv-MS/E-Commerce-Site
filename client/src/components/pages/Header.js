@@ -66,11 +66,12 @@ function Header({ productQuery, setProductQuery, searchProduct }) {
           <span className="header_optionLineOne">Return</span>
           <span className="header_optionLineTwo">& Orders</span>
         </div>
+        <Link to="/">
         <div className="header_option">
-          <span className="header_optionLineOne">Coming</span>
-          <span className="header_optionLineTwo">Soon...</span>
+          <span className="header_optionLineOne">See</span>
+          <span className="header_optionLineTwo">Our Products</span>
         </div>
-
+        </Link>
         <div className="header_optionBasket">
           <Link to="/shoppingCart">
             <ShoppingBasketIcon />
