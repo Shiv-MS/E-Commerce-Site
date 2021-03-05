@@ -64,7 +64,7 @@ const ShopppingCart = (props) => {
             </h2>
             <ul>
               {shoppingCart.length < 1 ? (
-                <p>Add items</p>
+                <p>Your Shopping Cart is Empty</p>
               ) : (
                 returnQtys(shoppingCart).map((item, i) => (
                   <div className="product" key={item._id + i}>
