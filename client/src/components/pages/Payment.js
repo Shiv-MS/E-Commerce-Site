@@ -5,6 +5,7 @@ import { Grid } from "@material-ui/core";
 import "./Payment.css";
 import Subtotal from "./Subtotal";
 import returnQtys from "../../utils/getQty";
+import { Link } from "react-router-dom";
 export default function Payment() {
   const { state } = useContext(Store);
   const user = state.auth.user;

@@ -4,7 +4,6 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './store/actions/authActions';
 import { Store } from './store';
-
 import './App.css';
 import Home from './components/pages/Home';
 import Register from './components/pages/Register';
@@ -15,6 +14,7 @@ import Header  from './components/pages/Header';
 import API from './utils/API';
 import Payment from './components/pages/Payment';
 import Footer from './components/pages/Footer';
+import NoMatch from './components/NoMatch';
 const App = () => {
   const { dispatch } = useContext(Store);
   // const [productQuery,setProductQuery] = useState({
@@ -55,15 +55,18 @@ console.log(err.message);
     <Router>
       <div className="App">
         <Header searchProduct={searchProduct} productQuery={productQuery} setProductQuery={setProductQuery}/>
-        <Route exact path="/">
+        
+        <Switch>
+          <PrivateRoute exact path="/shoppingCart" component={ShoppingCart} />
+          <Route exact path="/">
           <Home productQueryResults={productQueryResults}/>
-          
           </Route>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/payment" component={Payment} />
-        <Switch>
-          <PrivateRoute exact path="/shoppingCart" component={ShoppingCart} />
+        <Route path='*'>
+            <NoMatch />
+          </Route>
         </Switch>
         
         <Footer/>
