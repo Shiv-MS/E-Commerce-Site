@@ -27,6 +27,9 @@ const getBasketTotal = (basket) =>{
 const checkout = () =>{
   history.push('/payment');
 }
+const paymentCard = () =>{
+  history.push('/payment/card');
+}
   return (
     <div className="subtotal">
       <CurrencyFormat
@@ -48,7 +51,7 @@ const checkout = () =>{
         prefix={"$"}
       />
 
-      <button onClick={shoppingCart.length > 0 ? checkout:null}>{shopping?'Proceed to Checkout':'Confirm Order'}</button>
+{shopping?<button onClick={shoppingCart.length > 0 ? checkout:null}>Proceed to Checkout</button> : <button onClick={paymentCard}>Proceed to Checkout</button>}
     </div>
   );
 }
