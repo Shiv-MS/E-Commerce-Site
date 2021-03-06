@@ -17,7 +17,7 @@ import Footer from './components/pages/Footer';
 import NoMatch from './components/NoMatch';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
-const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+const stripePromise = loadStripe("pk_test_51IRlDCEiYCN71beseAfJRDadApId9mJdDK0ANoz6mKtMM700UTLOU0vRhyTHDRm6VUq7M02YjIyPxXclEjwTyax200bdm92MiS");
 const App = () => {
   const { dispatch } = useContext(Store);
   // const [productQuery,setProductQuery] = useState({

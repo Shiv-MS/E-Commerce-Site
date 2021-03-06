@@ -7,6 +7,7 @@ import Subtotal from "./Subtotal";
 import returnQtys from "../../utils/getQty";
 import { Link } from "react-router-dom";
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import axios from "axios";
 
 export default function Payment() {
   const {state} = useContext(Store);
@@ -30,23 +31,14 @@ export default function Payment() {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
-  const amount = getBasketTotal(shoppingCart);//this is suppose to be the amount to be paid
+  const amount = shoppingCart;//this is suppose to be the amount to be paid
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    window
-      .fetch("/api/product/pay", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({amount:1400})
-      })
+   axios.post('/api/product/pay',{amount:1400})
       .then(res => {
-        return res.json();
+        setClientSecret(res.data.clientSecret)
+       
       })
-      .then(data => {
-        setClientSecret(data.clientSecret);
-      });
   }, []);
   const handleChange = async (event) => {
     // Listen for changes in the CardElement
@@ -80,6 +72,19 @@ export default function Payment() {
       setError(error);
     } else {
       console.log('[PaymentMethod]', paymentMethod);
+      // setSucceeded(true);
+    }
+    if(!paymentMethod) return
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: paymentMethod.id
+    });
+console.log(payload)
+    if (payload.error) {
+      setError(`Payment failed ${payload.error.message}`);
+      setProcessing(false);
+    } else {
+      setError(null);
+      setProcessing(false);
       setSucceeded(true);
     }
   };
@@ -150,7 +155,7 @@ export default function Payment() {
     </form>
        </div>
           <div className="subtotal_container">
-            <Subtotal handleSubmit={handleSubmit} value={getBasketTotal(shoppingCart)}/>
+          {succeeded ?'':<Subtotal handleSubmit={handleSubmit} value={getBasketTotal(shoppingCart)}/>}
           </div>
          
         </div>
