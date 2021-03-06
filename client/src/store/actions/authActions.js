@@ -1,7 +1,7 @@
 import axios from 'axios';
 import setAuthToken from '../../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING,UPDATE_CART } from './types';
 
 export const setCurrentUser = decoded => {
   return {
@@ -49,6 +49,6 @@ export const logoutUser = history => dispatch => {
   setAuthToken(false);
 
   dispatch(setCurrentUser({}));
-
+  dispatch({ type: UPDATE_CART, payload: [] })
   history.push('/login');
 };
