@@ -27,6 +27,10 @@ res.send(responseDB)
         console.log(message)
     })
 });
+
+
+
+
 router.post('/pay',async(req,res)=>{
     const { items } = req.body;
     // Create a PaymentIntent with the order amount and currency
