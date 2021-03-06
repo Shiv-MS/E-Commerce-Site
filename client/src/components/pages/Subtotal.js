@@ -8,28 +8,30 @@ import {useHistory}  from 'react-router-dom';
 // import { getBasketTotal } from "./reducer";
 // import { useHistory } from "react-router-dom";
 
-function Subtotal({shopping}) {
+function Subtotal({shopping,value,handleSubmit}) {
 //   const history = useHistory();
 //   const [{ basket }, dispatch] = useStateValue();
 const {state} = useContext(Store);
 const shoppingCart = state.auth.cart;
 const history = useHistory();
-const getBasketTotal = (basket) =>{
-    if(basket.length > 0){
-    const priceArray = basket.map(({product_price}) => product_price);
-    const reducer = (accumulator, currentValue) => accumulator+ currentValue;
-   return priceArray.reduce(reducer) 
-    } else {
-      return 0
-    }
+// const getBasketTotal = (basket) =>{
+//     if(basket.length > 0){
+//     const priceArray = basket.map(({product_price}) => product_price);
+//     const reducer = (accumulator, currentValue) => accumulator+ currentValue;
+//    return priceArray.reduce(reducer) 
+//     } else {
+//       return 0
+//     }
 
-}
+// }
+
+
 const checkout = () =>{
   history.push('/payment');
 }
-const paymentCard = () =>{
-  history.push('/payment/card');
-}
+// const paymentCard = () =>{
+//   history.push('/payment/card');
+// }
   return (
     <div className="subtotal">
       <CurrencyFormat
@@ -45,13 +47,13 @@ const paymentCard = () =>{
           </>
         )}
         decimalScale={2}
-        value={getBasketTotal(shoppingCart)} // Part of the homework
+        value={value} // Part of the homework
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}
       />
 
-{shopping?<button onClick={shoppingCart.length > 0 ? checkout:null}>Proceed to Checkout</button> : <button onClick={paymentCard}>Proceed to Checkout</button>}
+{shopping?<button onClick={shoppingCart.length > 0 ? checkout:null}>Proceed to Checkout</button> : <button onClick={handleSubmit}>Proceed to Checkout</button>}
     </div>
   );
 }

@@ -8,6 +8,7 @@ function Product({product_name,image,product_price,rating,_id}) {
     const addToCart = (item)=>{
          API.add_to_cart(item)
         .then((res)=>{
+            // console.log(res.data)
             dispatch({type:UPDATE_CART , payload:res.data})
             // console.log(res)
         })
