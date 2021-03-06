@@ -31,13 +31,16 @@ export default function Payment() {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
-  const amount = shoppingCart;//this is suppose to be the amount to be paid
+  const amount = getBasketTotal(shoppingCart);//this is suppose to be the amount to be paid
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
+   
+console.log(amount)
+
+
    axios.post('/api/product/pay',{amount:1400})
       .then(res => {
         setClientSecret(res.data.clientSecret)
-       
+       console.log('here')
       })
   }, []);
   const handleChange = async (event) => {
