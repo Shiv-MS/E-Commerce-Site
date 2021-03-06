@@ -15,6 +15,9 @@ import API from './utils/API';
 import Payment from './components/pages/Payment';
 import Footer from './components/pages/Footer';
 import NoMatch from './components/NoMatch';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 const App = () => {
   const { dispatch } = useContext(Store);
   // const [productQuery,setProductQuery] = useState({
@@ -63,7 +66,10 @@ console.log(err.message);
           </Route>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/payment" component={Payment} />
+        <Route exact path="/payment"><Elements stripe={stripePromise}>
+<Payment></Payment>
+</Elements>
+</Route>
         <Route path='*'>
             <NoMatch />
           </Route>
