@@ -13,6 +13,17 @@ const ShopppingCart = (props) => {
   const user = state.auth.user;
   const shoppingCart = state.auth.cart;
   // console.log(shoppingCart)
+
+  const getBasketTotal = (basket) =>{
+    if(basket.length > 0){
+    const priceArray = basket.map(({product_price}) => product_price);
+    const reducer = (accumulator, currentValue) => accumulator+ currentValue;
+   return priceArray.reduce(reducer) 
+    } else {
+      return 0
+    }
+
+}
   useEffect(() => {
     if (!state.auth.isAuthenticated) props.history.push("/login");
 
@@ -94,7 +105,7 @@ const ShopppingCart = (props) => {
           
         </div>
         <div className="checkout_right">
-          <Subtotal shopping={true} />
+          <Subtotal shopping={true} value={getBasketTotal(shoppingCart)}/>
         </div>
       </div>
     
